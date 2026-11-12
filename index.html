@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta name="color-scheme" content="light">
+<title>Growth Audit — NYSORA Nerve Blocks</title>
+<meta name="description" content="NYSORA Nerve Blocks asks every new install five questions, then never shows the paywall on first launch. Here is a first launch that answers each profession and specialty, built in NYSORA's own design.">
+<link rel="icon" href="img/icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Shell: white, NYSORA navy ink, one cream surface, and the amber of their Subscribe button as the accent.
+   Phone: the app's white, its #143EAF blue, the #FFA901 amber CTA, the #F4AA3B best-value tag and #FFF0CF annual card. */
+:root{
+  color-scheme:only light;
+  --ink:#0B1A44; --ink-soft:#1E2A4F; --muted:rgba(11,26,68,.62); --faint:rgba(11,26,68,.22); --line:rgba(11,26,68,.09);
+  --soft:#FAFBFD; --cream:#F1F4FA; --cream2:#E5EAF4; --white:#FFFFFF;
+  --gold:#E89A00; --gold-lift:#9A6300; --gold-soft:#FFF0CF; --blue:#143EAF;
+  --mark:linear-gradient(transparent 60%,rgba(255,169,1,.38) 60%);
+  --f:'Inter',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --fp:'Plus Jakarta Sans',-apple-system,'Helvetica Neue',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{font-family:var(--f);color:var(--ink-soft);background:var(--white);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+img,video{display:block}
+em.g{font-style:normal;background:var(--mark);padding:0 2px}
+.hero em.g{background:none;color:#FFB627}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+@media(max-width:700px){.wrap{padding:0 16px}}
+
+/* ---- top bar: a floating frosted pill ---- */
+.nav{position:sticky;top:0;z-index:50;padding:12px 12px 0}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 10px 0 22px;height:60px;display:flex;align-items:center;gap:14px;background:rgba(241,244,250,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:999px;box-shadow:0 1px 0 var(--line)}
+@media(max-width:700px){.nav-in{padding:0 8px 0 16px;gap:8px}}
+.logo{width:104px;height:20px;background:var(--ink);-webkit-mask:url(img/logo.svg) left center/contain no-repeat;mask:url(img/logo.svg) left center/contain no-repeat;flex:none}
+@media(max-width:400px){.logo{width:84px}}
+.nav-in .sep{width:1px;height:20px;background:var(--faint)}
+.nav-in .lbl{font-size:14px;color:var(--muted);white-space:nowrap}
+@media(max-width:700px){.nav-in .sep,.nav-in .lbl{display:none}}
+.tabs{margin-left:auto;display:flex;gap:2px}
+.tabs button{height:40px;padding:0 16px;border-radius:999px;font-size:15px;font-weight:500;color:var(--muted)}
+@media(max-width:400px){.tabs button{padding:0 11px;font-size:14px}}
+.tabs button.on{background:var(--white);color:var(--ink);box-shadow:0 1px 3px rgba(11,26,68,.1)}
+.demo{height:44px;padding:0 20px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:500;display:flex;align-items:center;text-decoration:none;white-space:nowrap}
+.demo:hover{background:#000}
+@media(max-width:560px){.nav .demo{display:none}}
+
+.view{display:none}.view.on{display:block}
+
+/* ======================= OVERVIEW: NYSORA blue and their OR photography ======================= */
+.blue-bg{background:#143EAF}
+.hero-frame{margin:-72px 12px 0;border-radius:20px;overflow:hidden;position:relative;color:#fff;min-height:720px;display:flex;align-items:flex-end;background:#0E2C86 url(img/hero.jpg) center/cover no-repeat}
+.hero-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,30,92,.94) 0%,rgba(16,50,150,.72) 55%,rgba(20,62,175,.35) 100%);pointer-events:none;z-index:1}
+/* their icon: a transducer sending ultrasound waves. Here the waves keep going behind the hero. */
+.waves{position:absolute;right:8%;top:26%;width:0;height:0;z-index:1;pointer-events:none}
+.waves i{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:6px solid rgba(255,255,255,.13);border-color:transparent transparent rgba(255,255,255,.13) transparent;animation:wave 4.8s cubic-bezier(.3,.6,.4,1) infinite;opacity:0}
+@keyframes wave{0%{transform:scale(.4);opacity:0}15%{opacity:1}100%{transform:scale(7);opacity:0}}
+@media(prefers-reduced-motion:reduce){.waves i{animation:none;opacity:1}}
+.hero-in{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:end;padding-top:150px;padding-bottom:56px}
+@media(max-width:900px){.hero-frame{min-height:0}.hero-in{grid-template-columns:1fr;padding-top:120px;padding-bottom:36px}}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.78);font-weight:500}
+.hero h1{font-size:clamp(40px,5.6vw,70px);line-height:1.03;font-weight:600;letter-spacing:-.03em;margin-top:16px;max-width:820px}
+.hero .lead{font-size:clamp(17px,1.7vw,19px);line-height:1.55;margin-top:20px;max-width:650px;color:rgba(255,255,255,.88)}
+.cta-row{display:flex;gap:10px;align-items:center;margin-top:28px;flex-wrap:wrap}
+.btn-w{height:50px;padding:0 24px;border-radius:999px;background:#fff;color:var(--ink);font-size:17px;font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.btn-w:hover{background:var(--cream)}
+.btn-o{height:50px;padding:0 22px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:17px;font-weight:500;display:inline-flex;align-items:center;gap:8px}
+.btn-o:hover{background:rgba(255,255,255,.26)}
+.byline{margin-top:16px;font-size:14px;color:rgba(255,255,255,.7)}
+.fan{position:relative;height:400px}
+.fan img{position:absolute;width:176px;aspect-ratio:9/19;object-fit:cover;object-position:top;border-radius:18px;border:4px solid #0B1A44;box-shadow:0 24px 60px rgba(0,0,0,.45);background:#fff}
+.fan .j{width:84px;height:84px;border-radius:22px;border:0;aspect-ratio:auto;left:40%;bottom:0;z-index:4}
+@media(max-width:900px){.fan{height:280px}.fan img{width:122px;border-width:3px;border-radius:13px}.fan .j{width:62px;height:62px;border-radius:16px}}
+
+.stats{margin:12px 12px 0;border-radius:20px;background:var(--cream)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:30px 18px;text-align:center;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-size:38px;font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.stat b i{font-style:normal;color:var(--gold)}
+.stat span{display:block;font-size:14px;color:var(--muted);margin-top:6px;line-height:1.35}
+@media(max-width:800px){.stats .wrap{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:0}.stat{border-top:1px solid var(--line)}.stat:nth-child(-n+2){border-top:0}}
+
+.sec{padding:96px 0}
+@media(max-width:700px){.sec{padding:64px 0}}
+.sec-h{font-size:clamp(30px,3.9vw,48px);line-height:1.08;font-weight:600;letter-spacing:-.03em;max-width:880px;color:var(--ink)}
+.sec-h b{font-weight:600;color:var(--muted)}
+.sec-p{font-size:18px;line-height:1.6;color:var(--muted);margin-top:18px;max-width:780px}
+.kick{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
+
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+@media(max-width:860px){.about{grid-template-columns:1fr}}
+.flowp{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+.flowp div{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--ink-soft);line-height:1.45}
+.flowp i{font-style:normal;flex:none;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:12px;margin-top:1px}
+.flowp b{font-weight:600;color:var(--ink)}
+.flowp .k2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:8px}
+.note{background:var(--cream);border-radius:16px;padding:22px 24px}
+.note h4{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px;display:flex;gap:10px;align-items:center}
+.note h4 i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px}
+.note p{font-size:15px;color:var(--muted);line-height:1.55}
+.note+.note{margin-top:10px}
+
+/* your ads */
+.lib{background:var(--cream);border-radius:20px;padding:32px;margin-top:44px;display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:start}
+.lib+.lib{margin-top:12px}
+@media(max-width:900px){.lib{grid-template-columns:1fr;padding:16px}}
+.vid{position:relative;border-radius:14px;overflow:hidden;background:#000}
+.vid video,.vid>img{width:100%;max-height:420px;object-fit:contain;margin:0 auto;background:inherit}
+.vid .tag{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.94);color:var(--ink);font-size:11px;font-weight:600;letter-spacing:.06em;padding:5px 10px;border-radius:999px;display:flex;gap:6px;align-items:center}
+.vid .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:#1877F2}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.strip img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:#fff}
+.adb .hook{font-size:24px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:var(--ink)}
+.adb .hook small{display:block;font-size:15px;font-weight:400;color:var(--muted);margin-top:4px}
+.adb .meta{font-size:13.5px;color:var(--muted);margin-top:10px}
+.adb dl{margin-top:8px;font-size:15px;line-height:1.5}
+.adb dt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:14px;font-weight:600}
+.adb dd{color:var(--ink-soft)}
+.adb .go{margin-top:20px}
+.adb .go button{height:48px;padding:0 24px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:500}
+.lib-foot{margin-top:16px;font-size:14px;color:var(--muted);line-height:1.55;max-width:880px}
+
+/* the five ideas */
+.list{margin-top:40px;display:flex;flex-direction:column;max-width:980px;border-top:1px solid var(--line)}
+.it{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:26px 6px;cursor:pointer;border-bottom:1px solid var(--line);transition:background .2s}
+.it:hover{background:var(--soft)}
+@media(max-width:600px){.it{grid-template-columns:40px 1fr;gap:10px}}
+.it .em{font-size:22px;font-weight:600;color:var(--muted);letter-spacing:-.02em;padding-top:2px}
+.it h3{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3;color:var(--ink)}
+.it p{font-size:15.5px;color:var(--muted);margin-top:6px;line-height:1.55;max-width:780px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px;flex-wrap:wrap}
+.out{display:inline-flex;align-items:baseline;gap:8px;background:var(--gold-soft);color:#6B4300;padding:5px 12px;border-radius:999px;font-weight:600;font-size:14.5px}
+.out small{font-weight:400;font-size:12.5px}
+.see{font-size:14.5px;color:var(--ink);font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--faint)}
+
+/* the outcome */
+.outc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px}
+@media(max-width:860px){.outc{grid-template-columns:1fr}}
+.osh{position:relative;overflow:hidden;color:#fff;border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;justify-content:flex-end;min-height:460px}
+.osh>img{position:absolute;left:50%;top:30px;width:62%;max-width:300px;transform:translateX(-50%) rotate(-3deg);border-radius:14px;opacity:.95}
+.osh::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,36,110,.98) 40%,rgba(20,62,175,.1) 82%)}
+.osh>*:not(img){position:relative;z-index:2}
+.osh .k{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.osh h3{font-size:30px;font-weight:600;letter-spacing:-.03em;margin-top:8px;line-height:1.15;max-width:460px}
+.osh .nums{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.osh .nums div{background:rgba(255,255,255,.12);border-radius:16px;padding:14px 20px;min-width:130px}
+.osh .nums b{display:block;font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1;color:#FFB627}
+.osh .nums span{font-size:13.5px;color:rgba(255,255,255,.82)}
+.osh .cap{font-size:14.5px;color:rgba(255,255,255,.8);margin-top:18px;line-height:1.5;max-width:470px}
+.dos{display:flex;flex-direction:column;gap:12px}
+.do{background:var(--cream);border-radius:20px;padding:24px 26px;flex:1}
+.do .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+.do h4{font-size:20px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.do p{font-size:15px;color:var(--muted);margin-top:6px;line-height:1.55}
+.endcta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:40px}
+.btn-k{height:52px;padding:0 26px;border-radius:999px;background:var(--ink);color:#fff;font-size:17px;font-weight:500;display:inline-flex;align-items:center}
+.btn-k:hover{background:#000}
+.btn-l{height:52px;padding:0 24px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:17px;font-weight:500;display:inline-flex;align-items:center;text-decoration:none}
+.foot{font-size:13px;color:var(--muted);line-height:1.6;padding:30px 0 60px;border-top:1px solid var(--line);margin-top:36px}
+
+/* ======================= PROTOTYPE VIEW ======================= */
+.pwv{padding-top:48px;padding-bottom:70px}
+.pwv h1{font-size:clamp(34px,4.6vw,56px);font-weight:600;line-height:1.04;letter-spacing:-.03em;color:var(--ink)}
+.pwv h1 b{font-weight:600;color:var(--muted)}
+.pwv .sub{font-size:18px;color:var(--muted);margin-top:14px;max-width:820px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;align-items:center}
+.seg{display:inline-flex;background:var(--cream);border-radius:999px;padding:3px}
+.seg button{height:36px;padding:0 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--muted)}
+.seg button.on{background:var(--white);color:var(--ink);box-shadow:0 1px 3px rgba(11,26,68,.12)}
+.wt{height:42px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff;font-size:14.5px;font-weight:500;display:inline-flex;align-items:center;gap:8px}
+.wt.on{background:var(--gold);color:#fff}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.steps button{height:44px;padding:0 18px;border-radius:999px;background:var(--cream);font-size:15px;font-weight:500;color:var(--ink-soft);transition:all .15s}
+.steps button:hover{background:var(--cream2)}
+.steps button.on{background:var(--ink);color:#fff}
+.steps button.td{background:#fff;box-shadow:inset 0 0 0 1.5px var(--faint);color:var(--muted)}
+.steps button.td.on{background:var(--muted);color:#fff;box-shadow:none}
+.stcap{margin-top:14px;font-size:15.5px;color:var(--muted);min-height:24px;max-width:900px}
+.stcap b{font-weight:600;color:var(--ink)}
+.dcap{margin-top:14px;height:0;overflow:hidden;transition:height .25s}
+.dcap.on{height:58px}
+.dcap-in{display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:16px;padding:0 18px;height:58px;font-size:15px}
+.dcap-in .pr{flex:none;width:120px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
+.dcap-in .pr i{display:block;height:100%;width:0;background:#FFB627}
+.dcap-in span{flex:1}
+@media(max-width:600px){.dcap.on{position:fixed;left:8px;right:8px;bottom:8px;z-index:60;margin:0}}
+.trio{display:flex;gap:28px;justify-content:center;margin-top:26px;--sc:.8}
+@media(max-width:899px){.trio{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 16px 14px;margin-left:-16px;margin-right:-16px;gap:16px}}
+.tcol{flex:none;display:flex;flex-direction:column;align-items:center;scroll-snap-align:center}
+.apill{display:flex;align-items:center;gap:8px;height:34px;padding:0 14px 0 6px;border-radius:999px;background:var(--cream);font-size:13.5px;font-weight:500;color:var(--ink-soft);margin-bottom:14px;max-width:calc(390px * var(--sc) + 20px);white-space:nowrap;overflow:hidden}
+.apill .mt{height:24px;padding:0 9px;border-radius:99px;background:#1877F2;color:#fff;font-size:11.5px;display:inline-flex;align-items:center;flex:none}
+.apill .tx{overflow:hidden;text-overflow:ellipsis}
+.pbox{width:calc(390px * var(--sc));height:calc(844px * var(--sc));position:relative}
+.phone{position:absolute;left:0;top:0;width:390px;height:844px;transform:scale(var(--sc));transform-origin:0 0;border-radius:58px;background:#0c0c0c;padding:12px;box-shadow:0 30px 60px rgba(11,26,68,.22),0 0 0 2px #2c2c2c inset}
+.tcol.ring .phone{box-shadow:0 30px 60px rgba(11,26,68,.22),0 0 0 6px var(--ring)}
+.tlab{margin-top:16px;text-align:center;max-width:calc(390px * var(--sc) + 10px)}
+.tlab b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:600}
+.tlab span{display:block;font-size:14px;color:var(--muted);margin-top:4px;line-height:1.45}
+.finger{position:absolute;z-index:30;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 0 2px rgba(11,26,68,.35),0 6px 18px rgba(0,0,0,.35);pointer-events:none;opacity:0;transition:left .38s var(--ease),top .38s var(--ease),transform .12s,opacity .2s}
+.finger.on{opacity:1}.finger.press{transform:scale(.72)}
+
+/* ---- inside the phone: NYSORA Nerve Blocks, as the app ships ---- */
+.scr{position:absolute;inset:12px;border-radius:46px;overflow:hidden;color-scheme:only light;
+  --y-bg:#FFFFFF; --y-back:#EFEFF2; --y-surf:#FFFFFF; --y-soft:#F4F7FF; --y-tint:#E3EAFB; --y-ink:#0A0F24; --y-ink2:rgba(10,15,36,.74); --y-mute:#8C91A3; --y-line:#E6EAF3; --y-blue:#143EAF; --y-blue2:#1F4FD1; --y-amber:#FFA901; --y-gold:#F4AA3B; --y-cream:#FFF0CF; --y-mcard:#DFEAFF; --y-green:#1C9A3E; --y-chip:#E7EDFB;
+  background:var(--y-bg);color:var(--y-ink);font-family:var(--fp);display:flex;flex-direction:column}
+/* dark mode is approximated: the recording shows the app in light only */
+.phone.dk .scr{--y-bg:#0D1326; --y-back:#060A16; --y-surf:#151D36; --y-soft:#1A2547; --y-tint:#1A2649; --y-ink:#F2F4FA; --y-ink2:rgba(242,244,250,.76); --y-mute:#8A93AE; --y-line:#26304F; --y-chip:#22305C; --y-mcard:#24345F; --y-cream:#3A3220}
+.sb{height:50px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 36px;font-size:15px;font-weight:600;font-family:-apple-system,sans-serif;position:relative;z-index:6;color:var(--y-ink)}
+.sb.w{color:#fff}
+.sb .isl{position:absolute;left:50%;top:11px;width:120px;height:34px;margin-left:-60px;background:#000;border-radius:20px}
+.sb .ic{display:flex;gap:5px;align-items:center}
+.scr-top{flex:none;display:flex;align-items:center;padding:0 18px;position:relative;z-index:5}
+.scr-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative;padding:0 18px 18px}
+.scr-body::-webkit-scrollbar{display:none}
+.scr-body.col{display:flex;flex-direction:column}
+.scr-foot{flex:none;padding:12px 18px 30px;position:relative;z-index:4;background:var(--y-bg)}
+.scr-foot.sep{box-shadow:0 -1px 0 var(--y-line)}
+.wm{background:var(--y-blue);-webkit-mask:url(img/wordmark.png) center/contain no-repeat;mask:url(img/wordmark.png) center/contain no-repeat}
+.phone.dk .wm{background:#fff}
+.y-btn{display:flex;align-items:center;justify-content:center;width:100%;height:50px;border-radius:999px;background:var(--y-blue);color:#fff;font:600 15.5px/1 var(--fp)}
+.y-btn.amb{background:var(--y-amber);color:#0A0F24}
+.toast{position:absolute;left:50%;bottom:120px;transform:translateX(-50%) translateY(10px);background:rgba(10,15,36,.92);color:#fff;font:600 13px/1.3 var(--f);padding:10px 15px;border-radius:999px;opacity:0;transition:all .25s;pointer-events:none;z-index:40;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.pulse{animation:pulse 1.6s ease-out 2}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,169,1,.95)}100%{box-shadow:0 0 0 16px rgba(255,169,1,0)}}
+.fromad{display:inline-flex;gap:7px;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:rgba(24,119,242,.12);color:#1462C8;font-size:11.5px;font-weight:700}
+.phone.dk .fromad{color:#7FB2FF}
+
+/* Facebook, where the ads run */
+.fbv{position:absolute;inset:0;background:#F0F2F5;color:#050505;font-family:-apple-system,'Helvetica Neue',sans-serif;display:flex;flex-direction:column}
+.fbv .fbar{height:44px;margin-top:50px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;font-weight:800;font-size:25px;color:#1877F2;letter-spacing:-.04em}
+.fbv .fbar span{display:flex;gap:8px}.fbv .fbar span i{width:30px;height:30px;border-radius:50%;background:#E4E6EB}
+.fbv .post{background:#fff;margin-top:8px;flex:1;display:flex;flex-direction:column}
+.fbv .ph{display:flex;gap:9px;align-items:center;padding:10px 12px}
+.fbv .ph img{width:40px;height:40px;border-radius:50%}
+.fbv .ph b{display:block;font-size:14px}
+.fbv .ph small{display:block;font-size:12px;color:#65676B}
+.fbv video{width:100%;background:#000;max-height:470px;object-fit:contain}
+.fbv .cta{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;background:#F0F2F5}
+.fbv .cta small{display:block;font-size:11px;color:#65676B;text-transform:uppercase}
+.fbv .cta b{font-size:14.5px}
+.fbv .cta button{height:34px;padding:0 14px;border-radius:6px;background:#E4E6EB;font-weight:700;font-size:13.5px;color:#050505;flex:none}
+.fbv .stat-img{width:100%;cursor:pointer}
+.fbv .rx{display:flex;justify-content:space-around;padding:10px;color:#65676B;font-size:13.5px;font-weight:600;border-top:1px solid #E4E6EB;margin-top:auto}
+
+/* disclaimer, as the app has it */
+.dsc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 18px 60px;background:var(--y-bg)}
+.dsc-card{width:100%;background:#163DAF;border-radius:16px;color:#fff;text-align:center;overflow:hidden}
+.dsc-card h3{font-size:18px;font-weight:600;padding:22px 0 18px;border-bottom:1px solid rgba(255,255,255,.28)}
+.dsc-card p{font-size:13.5px;line-height:1.55;padding:28px 22px 0;color:rgba(255,255,255,.95)}
+.dsc-card .ag{display:block;width:calc(100% - 64px);margin:30px auto 0;height:42px;border-radius:999px;background:#FDAF36;color:#0A0F24;font:600 15px/1 var(--fp)}
+.dsc-card u{display:inline-block;font-size:13.5px;margin:18px 0 32px;text-underline-offset:3px}
+
+/* the questions: their white sheet, step label, segmented progress, outlined rows */
+.qwrap{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--y-back)}
+.qsheet{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--y-bg);border-radius:26px 26px 0 0;margin-top:2px}
+.qprog{display:flex;gap:4px;padding:18px 18px 0}
+.qprog i{flex:1;height:3.5px;border-radius:2px;background:var(--y-line)}
+.qprog i.on{background:var(--y-blue)}
+.qstep{font-size:12.5px;color:var(--y-mute);padding:9px 18px 0}
+.qttl{font-size:21px;font-weight:600;padding:2px 18px 12px;letter-spacing:-.01em}
+.qrows{display:flex;flex-direction:column;gap:10px}
+.qrow{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;padding:10px 14px;border-radius:8px;border:1.5px solid var(--y-line);background:var(--y-surf);font:400 14px/1.3 var(--fp);color:var(--y-ink);text-align:left;transition:background .15s,border-color .15s}
+.qrow.on{background:var(--y-soft);border-color:#5D79C8;color:var(--y-blue)}
+.phone.dk .qrow.on{color:#9DB6FF;border-color:#5D79C8}
+.qrow svg{width:16px;height:16px;flex:none;opacity:0}
+.qrow.on svg{opacity:1}
+.qin{width:100%;height:46px;border-radius:8px;border:1.5px solid var(--y-line);padding:0 14px;font:400 14.5px var(--fp);color:var(--y-ink);background:var(--y-surf);outline:none}
+.qin:focus{border-color:#5D79C8}
+.qhint{font-size:12px;color:var(--y-mute);margin-top:10px;line-height:1.5}
+.qfoot{flex:none;display:flex;align-items:center;justify-content:space-between;padding:12px 18px 34px;background:var(--y-bg)}
+.qback{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--y-blue);display:grid;place-items:center;color:var(--y-blue)}
+.qback svg{width:14px;height:14px}
+.qnext{height:36px;min-width:122px;padding:0 16px 0 22px;border-radius:999px;background:var(--y-blue);color:#fff;font:500 13.5px/1 var(--fp);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.qnext svg{width:14px;height:14px}
+.qnext.grn{background:var(--y-green);justify-content:center;padding:0 22px}
+.qnext[disabled]{opacity:.4}
+
+/* tracking: one line from you, then the system dialog */
+.attv{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 30px 90px}
+.attv .tile{width:84px;height:84px;border-radius:20px;box-shadow:0 10px 30px rgba(20,62,175,.25)}
+.attv h3{font-size:21px;font-weight:700;line-height:1.3;margin-top:24px}
+.attv p{font-size:13.5px;line-height:1.6;color:var(--y-ink2);margin-top:10px}
+.attv .y-btn{margin-top:26px;width:70%}
+.sys{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif}
+.sys-in{width:290px;border-radius:26px;background:rgba(40,40,42,.97);color:#fff;padding:20px 18px 14px;text-align:left}
+.sys-in .ai{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#FFB54A,#F28C1E);display:grid;place-items:center;color:#fff;font-size:22px}
+.sys-in h5{font-size:17px;font-weight:600;line-height:1.3;margin-top:14px}
+.sys-in p{font-size:13px;line-height:1.45;opacity:.7;margin-top:8px}
+.sys-in button{display:block;width:100%;height:44px;border-radius:999px;background:rgba(120,120,128,.24);font-size:16px;font-weight:500;margin-top:10px;color:#fff}
+
+/* loader: the answers read back */
+.ld{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 26px 40px}
+.ld img{width:96px;border-radius:22px;animation:bob 1.1s ease-in-out infinite;box-shadow:0 10px 30px rgba(20,62,175,.25)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.ld h3{font-size:20px;font-weight:700;line-height:1.35;text-align:center;margin-top:26px}
+.ld-bar{width:100%;height:5px;border-radius:3px;background:var(--y-line);margin-top:18px;overflow:hidden}
+.ld-bar i{display:block;height:100%;width:0;background:var(--y-blue);border-radius:3px;transition:width .25s linear}
+.ld-list{width:100%;margin-top:20px;display:flex;flex-direction:column;gap:11px}
+.ld-list div{display:flex;gap:10px;align-items:center;font-size:13.5px;line-height:1.35;color:var(--y-mute);transition:color .3s}
+.ld-list div.ok{color:var(--y-ink)}
+.ld-list .ck{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--y-line);display:grid;place-items:center}
+.ld-list div.ok .ck{background:var(--y-blue);border-color:var(--y-blue)}
+.ld-list .ck svg{width:12px;height:12px;stroke:#fff;stroke-width:3.4;fill:none;opacity:0}
+.ld-list div.ok .ck svg{opacity:1}
+.ld-list b{color:var(--y-blue);font-weight:700}
+.phone.dk .ld-list b{color:#9DB6FF}
+
+/* payoff: their block cards */
+.ytop{flex:none;height:46px;display:flex;align-items:center;justify-content:center;position:relative}
+.ytop .wm{width:118px;height:36px}
+.po-h{font-size:20px;font-weight:700;line-height:1.3;margin-top:12px;letter-spacing:-.01em}
+.po-h em{font-style:normal;color:var(--y-blue)}
+.phone.dk .po-h em{color:#9DB6FF}
+.po-s{font-size:13px;color:var(--y-ink2);margin-top:6px;line-height:1.5}
+.bk{display:flex;gap:12px;align-items:center;background:var(--y-surf);border-radius:14px;padding:8px;margin-top:10px;box-shadow:0 2px 10px rgba(10,15,36,.07)}
+.phone.dk .bk{box-shadow:none;border:1px solid var(--y-line)}
+.bk img{flex:none;width:74px;height:62px;border-radius:9px;object-fit:cover}
+.bk span{flex:1;min-width:0}
+.bk em{display:inline-block;font-style:normal;font-size:10px;font-weight:600;color:var(--y-blue);background:var(--y-chip);padding:3px 7px;border-radius:999px}
+.phone.dk .bk em{color:#9DB6FF}
+.bk b{display:block;font-size:13.5px;font-weight:500;line-height:1.3;margin-top:4px}
+.bk svg{flex:none;width:18px;height:18px;color:var(--y-ink2);margin-right:4px}
+.dq{background:var(--y-tint);border-radius:16px;padding:12px 14px;margin-top:14px;display:flex;gap:10px;align-items:center}
+.dq span{flex:1}
+.dq>svg,.hcard>svg{flex:none;width:16px;height:16px;color:var(--y-ink2)}
+.dq .nw{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:#fff;background:var(--y-blue);padding:3px 8px;border-radius:999px}
+.dq b{display:block;font-size:15px;font-weight:600;margin-top:5px}
+.dq small{display:block;font-size:11.5px;color:var(--y-ink2);margin-top:2px;line-height:1.4}
+
+/* paywall: their blue, stars, ticks, cream and blue plan cards, amber button */
+.pws{background:#143EAF;color:#fff}
+.pws .scr-body,.pws .scr-foot{background:#143EAF}
+.pw-x{position:absolute;right:18px;top:56px;width:34px;height:34px;display:grid;place-items:center;color:#fff;z-index:7}
+.pw-x svg{width:22px;height:22px}
+.pw-stars{display:flex;justify-content:center;gap:6px;margin-top:20px;color:#FFB627;font-size:25px;letter-spacing:1px}
+.pw-eb{text-align:center;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FFC24D;margin-top:12px}
+.pw-h{text-align:center;font-size:21px;font-weight:700;line-height:1.3;margin:6px 6px 0}
+.pw-q{text-align:center;font-size:20px;font-weight:600;line-height:1.35;margin:14px 10px 0;min-height:56px;transition:opacity .3s}
+.pw-chip{display:flex;justify-content:center;margin-top:12px}
+.pw-chip span{display:inline-block;max-width:100%;padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.14);font-size:11.5px;font-weight:600;color:rgba(255,255,255,.92);text-align:center;line-height:1.4}
+.pw-ul{margin-top:22px;font-size:13.5px}
+.pw-ul>small{display:block;font-size:13px;color:rgba(255,255,255,.9);margin-bottom:8px}
+.pw-ul div{display:flex;gap:10px;align-items:flex-start;line-height:1.4;margin-bottom:12px;font-size:14px}
+.pw-ul div i{flex:none;width:15px;height:15px;border-radius:50%;background:#fff;margin-top:2px;display:grid;place-items:center}
+.pw-ul div i svg{width:9px;height:9px;stroke:#143EAF;stroke-width:4;fill:none}
+.pw-ul b{font-weight:700}
+.plans{margin-top:8px}
+.plan{position:relative;display:block;width:100%;text-align:left;border-radius:10px;margin-bottom:10px;font-family:var(--fp);overflow:hidden;transition:opacity .2s,transform .15s;color:#0A0F24}
+.plan .tg{display:block;text-align:center;background:var(--y-gold);color:#0A0F24;font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 0}
+.plan .bd{display:flex;justify-content:space-between;gap:8px;padding:13px 15px;min-height:72px}
+.plan.yr .bd{background:#FFF0CF}.plan.mo .bd{background:#DFEAFF}
+.plan b{display:block;font-size:17px;font-weight:600}
+.plan small{display:block;font-size:12px;color:rgba(10,15,36,.6);margin-top:3px;line-height:1.35}
+.plan .pp{font-size:15px;font-weight:700;color:#143EAF;white-space:nowrap}
+.plan.off{opacity:.55}
+.plan.on{box-shadow:0 0 0 3px #FFB627}
+.pws.td .plan.on{box-shadow:none}
+.pw-proof{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;font-weight:600;margin-top:6px;color:rgba(255,255,255,.9)}
+.pw-proof i{font-style:normal;color:#FFB627;letter-spacing:1px}
+.rev{margin-top:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:13px 14px}
+.rev p{font-size:12.5px;line-height:1.55}
+.rev small{display:block;font-size:11px;color:rgba(255,255,255,.7);margin-top:6px}
+.inst{display:block;width:100%;margin-top:12px;border:1.5px dashed rgba(255,255,255,.4);border-radius:12px;padding:11px 14px;text-align:left;font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.92)}
+.inst b{font-weight:700;color:#fff}
+.legal{font-size:10px;line-height:1.55;color:rgba(255,255,255,.75);margin-top:14px;text-align:center}
+.legal .ln{margin-top:8px}.legal .ln u{text-underline-offset:2px}
+.fcap{font-size:11px;color:rgba(255,255,255,.75);text-align:center;margin-top:8px}
+.cap-today{margin:18px 0 6px;border:1.5px dashed rgba(255,255,255,.55);border-radius:14px;padding:12px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.92);line-height:1.5;font-family:var(--f)}
+
+/* home, where the X lands */
+.srch{display:flex;align-items:center;gap:8px;height:40px;border-radius:10px;background:var(--y-surf);box-shadow:0 1px 6px rgba(10,15,36,.1);padding:0 12px;font-size:13.5px;color:var(--y-mute);margin-top:6px}
+.phone.dk .srch{box-shadow:none;border:1px solid var(--y-line)}
+.srch svg{width:16px;height:16px}
+.hcard{display:flex;gap:10px;align-items:center;background:var(--y-tint);border-radius:14px;padding:11px 12px;margin-top:10px;width:100%;text-align:left}
+.hcard .bell{flex:none;font-size:22px}
+.hcard span{flex:1}
+.hcard b{display:block;font-size:13px;font-weight:600;color:var(--y-blue)}
+.phone.dk .hcard b{color:#9DB6FF}
+.hcard small{display:block;font-size:11px;color:var(--y-ink2);line-height:1.35;margin-top:1px}
+.hcard .ap{flex:none;height:30px;padding:0 12px;border-radius:999px;background:#000;color:#fff;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:5px}
+.cath{font-size:16px;font-weight:600;margin-top:16px}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.cat{background:var(--y-surf);border-radius:14px;padding:7px;box-shadow:0 2px 10px rgba(10,15,36,.07)}
+.phone.dk .cat{box-shadow:none;border:1px solid var(--y-line)}
+.cat img{width:100%;aspect-ratio:1.15;object-fit:cover;border-radius:10px}
+.cat em{display:inline-block;font-style:normal;font-size:10px;font-weight:600;color:var(--y-blue);background:var(--y-chip);padding:3px 7px;border-radius:999px;margin-top:7px}
+.phone.dk .cat em{color:#9DB6FF}
+.cat b{display:block;font-size:13px;font-weight:600;margin-top:5px}
+.tabbar{flex:none;margin:0 14px 26px;height:58px;border-radius:999px;background:var(--y-surf);box-shadow:0 2px 14px rgba(10,15,36,.12);display:flex;align-items:center;justify-content:space-around;font-size:10px;color:var(--y-ink2)}
+.phone.dk .tabbar{box-shadow:none;border:1px solid var(--y-line)}
+.tabbar div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.tabbar div.on{color:var(--y-blue)}
+.phone.dk .tabbar div.on{color:#9DB6FF}
+.tabbar svg{width:20px;height:20px}
+
+.ideas{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:56px}
+@media(max-width:800px){.ideas{grid-template-columns:1fr}}
+.idea{background:var(--cream);border-radius:16px;padding:22px 24px;cursor:pointer;transition:background .15s}
+.idea:hover{background:var(--cream2)}
+.idea:last-child{grid-column:1/-1}
+.idea .n{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lift);font-weight:600}
+.idea h3{font-size:19px;font-weight:600;letter-spacing:-.02em;margin-top:4px;line-height:1.3;color:var(--ink)}
+.idea p{font-size:14.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+.idea .kept{font-size:13px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.qr{position:relative;overflow:hidden;display:flex;gap:26px;align-items:center;color:#fff;border-radius:20px;padding:30px 32px;margin-top:40px;flex-wrap:wrap}
+.qr::before{content:"";position:absolute;inset:0;background:url(img/hero.jpg) center/cover;opacity:.18}
+.qr>*{position:relative;z-index:2}
+.qr img.code{width:123px;height:123px;background:#fff;border-radius:12px;padding:0;image-rendering:pixelated}
+.qr h3{font-size:24px;font-weight:600;letter-spacing:-.02em}
+.qr p{font-size:15px;color:rgba(255,255,255,.85);margin-top:4px;max-width:520px}
+.qr .demo{margin-left:auto;background:#fff;color:var(--ink);height:48px;padding:0 24px;font-size:16px}
+@media(max-width:1080px){.qr img.code{display:none}}
+@media(max-width:700px){.qr .demo{margin-left:0}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-in">
+  <span class="logo" role="img" aria-label="NYSORA"></span>
+  <span class="sep"></span><span class="lbl">Growth audit · by Adapty</span>
+  <div class="tabs"><button data-v="over" class="on">Overview</button><button data-v="pw">Prototype</button></div>
+  <a class="demo" href="https://calendly.com/d/cty4-37z-zqj" target="_blank" rel="noopener">Book a demo</a>
+</div></nav>
+
+<!-- ======================= OVERVIEW ======================= -->
+<div class="view on" id="view-over">
+  <header class="hero hero-frame">
+    <div class="waves" aria-hidden="true"><i></i><i style="animation-delay:-1.2s"></i><i style="animation-delay:-2.4s"></i><i style="animation-delay:-3.6s"></i></div>
+    <div class="wrap hero-in">
+      <div>
+        <div class="eyebrow">Growth audit · November 2026 · Prepared by Adapty</div>
+        <h1>You ask every new clinician five questions. <em class="g">The paywall never uses one.</em></h1>
+        <p class="lead">A new install picks Anesthesiologist, Obstetric Anesthesia and their hospital, taps Complete, and lands on the same home as everyone. The paywall waits behind Settings → Subscribe Now, and it opens with a quote, not their specialty. Here is a first launch that answers each profession and specialty, in your design, at your prices.</p>
+        <div class="cta-row">
+          <button class="btn-w" data-open="pw">Open the three flows</button>
+          <button class="btn-o" data-walk>▶ Watch the 30-second walkthrough</button>
+        </div>
+        <p class="byline">Built from your live iOS flow, your App Store listing, nysora.com and the Meta ads you run today.</p>
+      </div>
+      <div class="fan" aria-hidden="true">
+        <img src="img/shot-signin.jpg" style="left:0;top:70px;transform:rotate(-8deg)" alt="">
+        <img src="img/shot-prof.jpg" style="left:29%;top:16px;transform:rotate(-1deg);z-index:2" alt="">
+        <img src="img/shot-pw.jpg" style="left:58%;top:80px;transform:rotate(7deg)" alt="">
+        <img class="j" src="img/icon.jpg" alt="">
+      </div>
+    </div>
+  </header>
+
+  <div class="stats"><div class="wrap">
+    <div class="stat"><b><i>★</i> 4.9</b><span>from 1.1K ratings on the US App Store</span></div>
+    <div class="stat"><b>15,000+</b><span>anesthesiologists, as nysora.com says</span></div>
+    <div class="stat"><b>5</b><span>questions a new install answers on first launch</span></div>
+    <div class="stat"><b>0</b><span>times the paywall appears before the home screen</span></div>
+  </div></div>
+
+  <section class="sec"><div class="wrap about">
+    <div>
+      <div class="kick">What this is</div>
+      <h2 class="sec-h">We installed Nerve Blocks, walked the first launch, then rebuilt <b>the screens between Complete and Subscribe</b>.</h2>
+      <p class="sec-p">Adapty powers subscriptions for 30,000+ apps, so we see what moves purchases across the market. Nearly 500 apps build their paywalls and onboarding in Adapty Flow Builder, and millions of dollars in subscription revenue pass through it every month. For Nerve Blocks we looked for the gap between what the app learns about a new clinician and what it shows them.</p>
+      <div class="flowp">
+        <div class="k2">Your first launch today</div>
+        <div><i>1</i><span>Disclaimer and I Agree. <b>Good, kept first.</b></span></div>
+        <div><i>2</i><span>Sign in with iCloud twice, then the push prompt, then Google / Apple / Verify Manually.</span></div>
+        <div><i>3</i><span>Profession, Specialty, Country, Age group, Institution, with the tracking prompt on the way in. <b>Kept, and now used.</b></span></div>
+        <div><i>4</i><span>Home. The paywall: only from Settings → Subscribe Now.</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="note"><h4><i>1</i>Your design, not ours</h4><p>Your #143EAF blue, the white question sheet with its step bar and outlined rows, the round back button and blue Next pill, the green Complete, your five gold stars, the cream annual card with its BEST VALUE tag and the amber Subscribe. Only the order changes.</p></div>
+      <div class="note"><h4><i>2</i>Your prices, as published</h4><p>149,99 € a year or 22,99 € a month, as your paywall shows on the EU store we recorded. 149,99 € ÷ 12 is your €12.50 a month, and against twelve months at 22,99 € it is your “save 46%”. No trial, no invented discount, no timer.</p></div>
+      <div class="note"><h4><i>3</i>You may have tested some of this</h4><p>We cannot see your experiment history. Tell us what you already ran and we will go deeper on the rest.</p></div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="ads" style="padding-top:0"><div class="wrap">
+    <div class="kick">Your ads on Meta</div>
+    <h2 class="sec-h">Three kinds of ad running today. <b>All of them land on the same first launch.</b></h2>
+    <p class="sec-p">AppMagic sees Meta as 97% of your ad activity, with the top creatives live since June and five new ones since 3 November. Each promises something different. Today every install from them meets the same disclaimer, sign-in and questions, and none of them sees the paywall.</p>
+    <div class="lib">
+      <div>
+        <div class="vid"><video src="img/ad-3d.mp4" autoplay muted loop playsinline poster="img/ad3d-1.jpg"></video><span class="tag">META · RUNNING SINCE JUNE</span></div>
+        <div class="strip"><img src="img/ad3d-1.jpg" alt=""><img src="img/ad3d-2.jpg" alt=""><img src="img/ad3d-3.jpg" alt=""><img src="img/ad3d-4.jpg" alt=""></div>
+      </div>
+      <div class="adb">
+        <div class="hook">The block, in 3D<small>A needle reaches the plane, two wrong directions are crossed out, and the local anesthetic spreads with a green tick.</small></div>
+        <div class="meta">Meta · since 17 June 2026 · 14 seconds · your top video creative in AppMagic</div>
+        <dl>
+          <dt>In the ad</dt><dd>Your 3D anatomy, a needle and the spread of local anesthetic, under the NYSORA mark.</dd>
+          <dt>The promise</dt><dd>See exactly where the needle goes and how the spread should look.</dd>
+          <dt>Today it lands on</dt><dd>The disclaimer, two iCloud prompts, the push prompt and a sign-in screen. The paywall is never shown.</dd>
+          <dt>In the rebuild</dt><dd>The same questions, then a paywall that opens on their specialty and lists Clinical videos, 3D visuals first.</dd>
+        </dl>
+        <div class="go"><button data-adgo="0">Open its flow</button></div>
+      </div>
+    </div>
+    <div class="lib">
+      <div>
+        <div class="vid" style="background:#fff"><video src="img/ad-app.mp4" autoplay muted loop playsinline poster="img/adapp-1.jpg" style="background:#fff"></video><span class="tag">META · SINCE 28 OCTOBER</span></div>
+        <div class="strip"><img src="img/adnew-1.jpg" alt=""><img src="img/adnew-2.jpg" alt=""><img src="img/adnew-3.jpg" alt=""><img src="img/adnew-4.jpg" alt=""></div>
+      </div>
+      <div class="adb">
+        <div class="hook">“Every block, clearly explained”<small>The app itself: Supraclavicular brachial plexus block, from sonoanatomy to the flowchart.</small></div>
+        <div class="meta">Meta · three versions since 28 October 2026, a fourth since 5 November · ~25 seconds each</div>
+        <dl>
+          <dt>In the ad</dt><dd>Your home, then one block: the illustration, the ultrasound, positioning and the flowchart. The newest ends on “NYSORA Nerve Blocks app. Built for daily practice.”</dd>
+          <dt>The promise</dt><dd>A step-by-step guide for the block you are about to do.</dd>
+          <dt>Today it lands on</dt><dd>The same first launch, then a home that does not know which blocks they need.</dd>
+          <dt>In the rebuild</dt><dd>Their specialty picks a first set of blocks before the paywall, and the headline names them.</dd>
+        </dl>
+        <div class="go"><button data-adgo="1">Open its flow</button></div>
+      </div>
+    </div>
+    <div class="lib">
+      <div>
+        <div class="vid" style="background:#fff"><img src="img/ad-static.jpg" alt="Your Meta ad: Your daily block companion"><span class="tag">META · SINCE 11 JUNE</span></div>
+      </div>
+      <div class="adb">
+        <div class="hook">“Your daily block companion”<small>“Everyone in my program uses this app.” · “The only block reference I actually use daily.”</small></div>
+        <div class="meta">Meta · since 11 June 2026 · static · your highest-scoring creative in AppMagic</div>
+        <dl>
+          <dt>In the ad</dt><dd>The app in hand, two five-star quotes and “A new update to the Nerve Blocks App is now live, with clearer structure for faster access.”</dd>
+          <dt>The promise</dt><dd>Something you open every day, that your whole program uses.</dd>
+          <dt>Today it lands on</dt><dd>A paywall, when they find it, whose quotes carry no name and no rating.</dd>
+          <dt>In the rebuild</dt><dd>Your 4.9 from 1.1K ratings and a named App Store review sit next to the plans, and the Daily Question is set for their profession.</dd>
+        </dl>
+        <div class="go"><button data-adgo="2">Open its flow</button></div>
+      </div>
+    </div>
+    <p class="lib-foot">Adapty can pick the flow at first open from the campaign the install came from, through the attribution you already run. When you add a new creative, it can get its own first screen the same day, with no app release.</p>
+  </div></section>
+
+  <section class="sec" style="padding-top:0"><div class="wrap">
+    <div class="kick">The five ideas</div>
+    <h2 class="sec-h">Ranked by what we would <b>test first</b>.</h2>
+    <p class="sec-p">Tap any of them to open that screen on all three phones.</p>
+    <div class="list" id="list"></div>
+  </div></section>
+
+  <section class="sec" style="padding-top:0"><div class="wrap">
+    <div class="kick">Potential outcome</div>
+    <h2 class="sec-h">Five ideas, <b>one first launch per specialty</b>.</h2>
+    <div class="outc">
+      <div class="osh blue-bg">
+        <img src="img/ss-rua.jpg" alt="">
+        <div class="k">Run together</div>
+        <h3>Every specialty answered on the screen they pay on</h3>
+        <div class="nums"><div><b>+25%</b><span>purchases</span></div><div><b>+15%</b><span>ARPU</span></div></div>
+        <p class="cap">Each specialty’s paywall is its own A/B test against today’s, judged on revenue per install.</p>
+      </div>
+      <div class="dos">
+        <div class="do"><div class="k">Do this week</div><h4>Show the paywall once, after Institution</h4><p>One screen at the end of first launch, closing straight into the home. Built in Flow Builder, live without an app release.</p></div>
+        <div class="do"><div class="k">Then</div><h4>One template, specialty as the variable</h4><p>Ten specialties, one paywall. The headline, the first blocks and the order of your four benefits change with the answer.</p></div>
+        <div class="do"><div class="k">And measure</div><h4>Judge each profession on revenue, not installs</h4><p>Adapty reports purchases and revenue per install for each profession, specialty and Meta campaign, so spend follows the clinicians who pay.</p></div>
+      </div>
+    </div>
+    <div class="endcta"><button class="btn-k" data-open="pw">Open the prototype</button><a class="btn-l" href="https://calendly.com/d/cty4-37z-zqj" target="_blank" rel="noopener">Book a demo</a></div>
+    <p class="foot">Impact ranges are Adapty’s expected effect from teardowns and A/B tests across subscription apps, not measured lift for NYSORA. Screens, copy, the profession, specialty and age lists, the paywall quotes, bullets and prices come from the NYSORA Nerve Blocks iOS app as recorded on 12 November 2026 (EU storefront: 149,99 € a year, 22,99 € a month). 4.9 from 1.1K ratings and the quoted review (denelson2, 29 January 2025) come from the US App Store listing. 15,000+ anesthesiologists, 70+ techniques, the four categories and institutional access come from nysora.com/apps/nerve-blocks-app. Block counts per category (11, 18, 20, 22) are from your home screen. Ads and dates are from Meta as seen by AppMagic. €12.50 is 149,99 € ÷ 12; “save 46%” is 149,99 € against 275,88 € (12 × 22,99 €). The specialty-to-block sets on the phones are illustrative and use only blocks in your library; your clinical team would own the real mapping.</p>
+  </div></section>
+</div>
+
+<!-- ======================= PROTOTYPE ======================= -->
+<div class="view" id="view-pw">
+  <div class="wrap pwv">
+    <div class="kick">Prototype · one first launch per specialty</div>
+    <h1>Three new clinicians. <b>Three answers.</b></h1>
+    <p class="sub">One install from each of your Meta ads: an anesthesiologist, an obstetric resident and a pain specialist. Same screens, same prices. Tap the steps, or tap inside any phone: answer, allow tracking, choose a plan, close it.</p>
+    <div class="tools">
+      <div class="seg" id="theme"><button data-th="light" class="on">Light</button><button data-th="dark">Dark</button></div>
+      <button class="wt" id="wt" data-walk>▶ 30-second walkthrough</button>
+    </div>
+    <div class="steps" id="steps">
+      <button data-st="today" class="td">Today</button><button data-st="arrive">1 · Arrive</button><button data-st="att">2 · Tracking</button><button data-st="prof">3 · Profession</button><button data-st="spec">4 · Specialty</button><button data-st="load">5 · Loader</button><button data-st="blocks">6 · Your blocks</button><button data-st="pw" class="on">7 · Premium</button>
+    </div>
+    <p class="stcap" id="stcap"></p>
+    <div class="dcap" id="dcap"><div class="dcap-in"><span id="dtx"></span><div class="pr"><i id="dpr"></i></div></div></div>
+    <div class="trio" id="trio"></div>
+    <div class="ideas" id="ideas"></div>
+    <div class="qr blue-bg">
+      <img class="code" src="img/qr.svg" alt="QR code to this prototype">
+      <div><h3>Try it on your phone</h3><p>Scan to open the three flows in your hand. Every screen is buildable in Adapty Flow Builder and testable against today’s.</p></div>
+      <a class="demo" href="https://calendly.com/d/cty4-37z-zqj" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+  </div>
+</div>
+
+<script>
+var $=function(s,r){ return (r||document).querySelector(s); }, $$=function(s,r){ return [].slice.call((r||document).querySelectorAll(s)); };
+function SV(d,w){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>'; }
+var CHK='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var TICK=SV('<path d="M20 6 9 17l-5-5"/>',2.4), CHEV=SV('<path d="m9 18 6-6-6-6"/>',2.2), BACK=SV('<path d="m15 18-6-6 6-6"/>',2.2);
+
+/* the app ships in English; the phones are written through L() so a second language is a flip */
+var G={ lang:'en', theme:'light', step:'pw' };
+function L(en,xx){ return G.lang!=='en'&&xx?xx:en; }
+
+/* the app's own lists, in its order (Country is skipped here: see the reply) */
+var PROF=['Anesthesiologist','Anesthesiology Resident / Fellow','Nurse Anesthetist (CRNA / CNA)','Anesthesia Technician / Technologist','Operating Room Nurse','Medical Student','Pain Specialist','Intensivist / Critical Care Physician','Emergency Physician','Surgeon','Other'];
+var SPEC=['General Anesthesia','Pediatric Anesthesia','Obstetric Anesthesia','Cardiac Anesthesia','Neuroanesthesia','Critical Care','POCUS (Point-of-Care Ultrasound)','MSK (Musculoskeletal)','Veterinary Anesthesia','Other'];
+var AGE=['Under 25','25–34','35–44','45–54','55–64','65+','Prefer not to say'];
+var SHORTP={'Anesthesiologist':'Anesthesiologist','Anesthesiology Resident / Fellow':'Resident / Fellow','Nurse Anesthetist (CRNA / CNA)':'Nurse Anesthetist','Anesthesia Technician / Technologist':'Anesthesia Technician','Operating Room Nurse':'OR Nurse','Medical Student':'Medical Student','Pain Specialist':'Pain Specialist','Intensivist / Critical Care Physician':'Intensivist','Emergency Physician':'Emergency Physician','Surgeon':'Surgeon','Other':'Clinician'};
+function shortS(s){ return s.replace(/ \(.*\)/,''); }
+
+/* blocks from their library, with the category chip their cards carry */
+var BLK={
+ supra:{t:'Supraclavicular brachial plexus block',c:'Upper Extremity',img:'b-supra'},
+ inter:{t:'Interscalene brachial plexus block',c:'Upper Extremity',img:'b-inter'},
+ popl:{t:'Popliteal sciatic nerve block',c:'Lower Extremity',img:'b-popl'},
+ fi:{t:'Fascia iliaca block',c:'Lower Extremity',img:'b-fi'},
+ peng:{t:'Hip (PENG) block',c:'Lower Extremity',img:'cat-lower'},
+ tap:{t:'TAP (Transversus Abdominis Plane) block',c:'Thorax & Abdo Wall',img:'cat-thorax'},
+ esp:{t:'ESP (Erector Spinae Plane) block',c:'Thorax & Abdo Wall',img:'cat-thorax'},
+ gon:{t:'Greater occipital nerve (GON) block',c:'Head & Neck',img:'cat-head'},
+ spn:{t:'Shoulder posterior pericapsular nerve block',c:'New Techniques',img:'cat-upper'}
+};
+/* a first set per specialty (illustrative; uses only blocks the app has) and the headline it earns */
+var SET={
+ 'General Anesthesia':{b:['inter','supra','popl','tap'],h:'Interscalene to popliteal: every block on your list, step by step'},
+ 'Pediatric Anesthesia':{b:['tap','esp','fi'],h:'TAP, ESP and fascia iliaca blocks, step by step, for your pediatric lists'},
+ 'Obstetric Anesthesia':{b:['tap','esp'],h:'TAP and ESP blocks, step by step, before your next obstetric list'},
+ 'Cardiac Anesthesia':{b:['esp','tap'],h:'ESP and TAP blocks, step by step, with Reverse Ultrasound Anatomy'},
+ 'Neuroanesthesia':{b:['gon','inter'],h:'Occipital and interscalene blocks, step by step, with Reverse Ultrasound Anatomy'},
+ 'Critical Care':{b:['fi','esp','supra'],h:'Fascia iliaca, ESP and supraclavicular blocks, ready at the bedside'},
+ 'POCUS (Point-of-Care Ultrasound)':{b:['supra','inter','fi'],h:'Every block in ultrasound and Reverse Ultrasound Anatomy, side by side'},
+ 'MSK (Musculoskeletal)':{b:['peng','spn','gon','popl'],h:'PENG, pericapsular and occipital blocks, step by step'},
+ 'Veterinary Anesthesia':{b:['supra','popl'],h:'70+ standardized techniques, step by step, with Reverse Ultrasound Anatomy'},
+ 'Other':{b:['inter','supra','tap'],h:'70+ standardized techniques, step by step, with Reverse Ultrasound Anatomy'}
+};
+/* their four paywall bullets; the order follows the specialty */
+var BUL={
+ std:'<b>70+ NYSORA</b> Standardized Nerve Block Techniques',
+ step:'<b>Step-by-step guides</b> with Reverse Ultrasound Anatomy',
+ vid:'<b>Clinical videos, 3D visuals,</b> and flowcharts',
+ upd:'<b>Updated regularly</b> with the latest techniques'
+};
+var QUOTES=['"The most complete nerve block reference I\'ve used."','"Every block I need — clearly explained and illustrated."','"A must-have for anyone performing nerve blocks."','"Makes even complex blocks feel straightforward."'];
+var PRICE={y:'149,99 €',ym:'€12.50',m:'22,99 €'};
+
+/* the three phones: one per Meta ad group */
+var PH=[
+ { id:'d3', ad:'d3', ring:'#1877F2', prof:'Anesthesiologist', spec:'General Anesthesia', age:'35–44', inst:'City General Hospital', mt:'Meta ad', pill:'3D block animation', bul:['vid','step','std','upd'], lab:['From your 3D animation ad','They came for the spread in 3D, so Clinical videos, 3D visuals leads, and the headline names their whole list.'] },
+ { id:'app', ad:'app', ring:'#143EAF', prof:'Anesthesiology Resident / Fellow', spec:'Obstetric Anesthesia', age:'25–34', inst:'University Hospital', mt:'Meta ad', pill:'“Every block, clearly explained”', bul:['step','std','vid','upd'], lab:['From your app walkthrough ad','An obstetric resident: TAP and ESP are picked before the paywall, and the headline names them.'] },
+ { id:'st', ad:'st', ring:'#FFA901', prof:'Pain Specialist', spec:'MSK (Musculoskeletal)', age:'45–54', inst:'Regional Pain Clinic', mt:'Meta ad', pill:'“Your daily block companion”', bul:['std','step','vid','upd'], lab:['From your daily companion ad','A pain specialist: PENG and pericapsular blocks first, your 4.9 rating and a named review by the plans.'] }
+];
+
+var IDEAS=[
+ { t:'Show the paywall at the end of first launch', p:'Today a new clinician answers Institution, taps Complete and lands on home. The paywall only opens from Settings → Subscribe Now, a button that floats over your settings list. Here it comes once, right after the questions, while they still remember why they installed. Its X closes straight into the app.', o:'CR +10–20%', u:'to purchase', st:'pw', hl:'pwtop', kept:'Kept: your blue screen, five gold stars, your four bullets, both plans and the amber Subscribe.' },
+ { t:'Name their profession and specialty in the headline', p:'Today the paywall opens on a rotating quote, “The most complete nerve block reference I’ve used.”, the same for everyone. Here an obstetric resident reads “TAP and ESP blocks, step by step, before your next obstetric list”, a pain specialist “PENG, pericapsular and occipital blocks, step by step”, and your four bullets reorder to match.', o:'CR +15–20%', u:'to purchase', st:'pw', hl:'head', kept:'Kept: one template, with Specialty as the variable.' },
+ { t:'Use the answers before the paywall', p:'Today Complete shows a spinner, then the same home for every profession. Here the wait names what it does with each answer (matching blocks to Obstetric Anesthesia, setting the Daily Question for a resident, checking University Hospital for institutional access), then “Your first blocks” lists them in your own block cards.', o:'CR +10–15%', u:'to purchase', st:'load', hl:'ld', kept:'Kept: your app icon, your block cards and category chips, your Daily Question card.' },
+ { t:'Ask for the account and push after the paywall', p:'Today “Sign in with iCloud” appears twice before the first screen, then the push prompt, then Google / Apple / Verify Manually, all before a single question. Here the questions come first. Your own “Turn on your push notification?” card and Continue with Apple wait on the home screen, after the paywall. The tracking prompt stays early.', o:'CR +5–10%', u:'and ARPU +10–17%', st:'home', hl:'acct', kept:'Kept: the disclaimer first, your sign-in options and your push card, all of them, later.' },
+ { t:'Put your rating and a named review next to the plans', p:'Today the quotes carry no name and the 4.9 from 1.1K ratings never appears. Here the rating, “Trusted by 15,000+ anesthesiologists” and a verbatim App Store review by denelson2 sit between the plans and the button. Their Institution answer adds one line: does City General Hospital cover it? Request institutional access.', o:'CR +5–10%', u:'to purchase', st:'pw', hl:'rev', kept:'Kept: your quotes, now attributed; your institutional access offer from nysora.com.' }
+];
+
+var TCAP={
+ today:'<b>Today:</b> this is the paywall for everyone, reached only from Settings → Subscribe Now. It is never shown on first launch, and its X goes back to Settings.',
+ arrive:'<b>Step 1.</b> One install from each of your Meta ads. Tap Install, then I Agree: your disclaimer stays first.',
+ att:'<b>Step 2.</b> Tracking stays early, on its own screen, so every install can be tied to the ad that bought it. Push and sign-in move after the paywall.',
+ prof:'<b>Step 3.</b> Your Profession list, untouched. Each phone has its answer; change it and watch the paywall follow.',
+ spec:'<b>Step 4.</b> Your Specialty list. Age group and Institution follow, as today. Country is not in this prototype: see the note in the reply.',
+ load:'<b>Step 5. Proposed:</b> the wait reads each answer back instead of a spinner.',
+ blocks:'<b>Step 6. Proposed:</b> their first blocks, picked by specialty, in your own block cards.',
+ pw:'<b>Step 7. Proposed:</b> the paywall names their specialty. Scroll a phone, pick a plan, tap the X: it closes straight into the app.',
+ home:'<b>After the paywall:</b> the X lands on home. Your push card and Continue with Apple wait here now, not before the first question.'
+};
+
+var COL=PH.map(function(){ return {}; });
+function initCol(i){ var c=COL[i], p=PH[i]; c.prof=p.prof; c.spec=p.spec; c.age=p.age; c.inst=p.inst; c.plan='y'; c.ld=0; c.qi=0; return c; }
+PH.forEach(function(p,i){ initCol(i); });
+
+function sb(w){ return '<div class="sb'+(w?' w':'')+'"><span>9:41</span><i class="isl"></i><span class="ic"><svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg><svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".5" y=".5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor"/></svg></span></div>'; }
+function setOf(i){ return SET[COL[i].spec]||SET.Other; }
+function who(i){ var c=COL[i]; return SHORTP[c.prof]+' · '+shortS(c.spec); }
+
+/* Facebook, where each ad runs */
+function scrFB(i){
+  var p=PH[i], post;
+  var head='<div class="ph"><img src="img/icon.jpg" alt=""><div><b>NYSORA - Continuing Medical Education</b><small>Sponsored · 🌐</small></div></div>';
+  if(p.ad==='st') post='<img class="stat-img" src="img/ad-static.jpg" alt="" data-act="install">';
+  else post=head+'<video src="img/'+(p.ad==='d3'?'ad-3d':'ad-app')+'.mp4" autoplay muted loop playsinline poster="img/'+(p.ad==='d3'?'ad3d-1':'adapp-1')+'.jpg"'+(p.ad==='app'?' style="background:#fff"':'')+'></video>'+
+     '<div class="cta"><span><small>apps.apple.com</small><b>NYSORA Nerve Blocks</b></span><button data-act="install">Install now</button></div>';
+  return '<div class="fbv"><div class="fbar">facebook<span><i></i><i></i></span></div><div class="post">'+post+'<div class="rx"><span>👍 Like</span><span>💬 Comment</span><span>↗ Share</span></div></div></div>'+sb();
+}
+function scrDisc(i){
+  return sb()+'<div class="dsc">'+
+   '<span class="fromad" style="margin-bottom:22px">▶ From your Meta ad: '+PH[i].pill+'</span>'+
+   '<div class="dsc-card"><h3>Disclaimer</h3><p>This App is for educational use only and is not a substitute for professional judgment. All clinical decisions remain your responsibility. By using the App, you agree to the full Terms of Use and Disclaimer.</p>'+
+   '<button class="ag" data-act="agree">I Agree</button><u>View full terms &amp; disclaimer</u></div></div>';
+}
+function scrAtt(i,sys){
+  return sb()+'<div class="attv"><img class="tile" src="img/icon.jpg" alt=""><h3>One quick question from iOS</h3>'+
+   '<p>It helps us improve the app with anonymous usage data. No personal information is collected.</p>'+
+   '<button class="y-btn" data-act="attnext">Continue</button></div>'+
+   (sys?'<div class="sys"><div class="sys-in"><div class="ai">✋</div><h5>Allow “Nerve Blocks” to track your activity across other companies’ apps and websites?</h5><p>This helps us improve the app by collecting anonymous usage data and analytics. No personal information is collected.</p><button data-act="attno">Ask App Not to Track</button><button data-act="attok">Allow</button></div></div>':'');
+}
+/* the four questions, in their sheet */
+var QS=[
+ {k:'prof',t:'Profession',list:PROF},
+ {k:'spec',t:'Specialty',list:SPEC},
+ {k:'age',t:'Age group',list:AGE},
+ {k:'inst',t:'Institution'}
+];
+function scrQ(i,n){
+  var c=COL[i], q=QS[n], body;
+  if(q.k==='inst') body='<input class="qin" data-act="inst" value="'+c.inst.replace(/"/g,'&quot;')+'" placeholder="e.g. Hospital or University name"><p class="qhint">Used later to check whether your institution already covers NYSORA.</p>';
+  else body='<div class="qrows" data-hl="q-'+q.k+'">'+q.list.map(function(v){ return '<button class="qrow'+(c[q.k]===v?' on':'')+'" data-act="pick" data-k="'+q.k+'" data-v="'+v+'"><span>'+v+'</span>'+TICK+'</button>'; }).join('')+'</div>';
+  var last=n===QS.length-1;
+  return sb()+'<div class="qwrap"><div class="qsheet"><div class="qprog">'+QS.map(function(x,j){ return '<i'+(j<=n?' class="on"':'')+'></i>'; }).join('')+'</div>'+
+   '<div class="qstep">Step '+(n+1)+' of '+QS.length+'</div><div class="qttl">'+q.t+'</div>'+
+   '<div class="scr-body">'+body+'</div>'+
+   '<div class="qfoot">'+(n>0?'<button class="qback" data-act="qback">'+BACK+'</button>':'<span></span>')+
+   (last?'<button class="qnext grn" data-act="qnext">Complete</button>':'<button class="qnext" data-act="qnext">Next'+CHEV+'</button>')+'</div></div></div>';
+}
+function loadLines(i){
+  var c=COL[i];
+  return ['Matching blocks to <b>'+shortS(c.spec)+'</b>',
+          'Pinning <b>'+BLK[setOf(i).b[0]].c+'</b> to your home',
+          'Setting today’s Daily Question for a <b>'+SHORTP[c.prof]+'</b>',
+          'Checking <b>'+(c.inst||'your institution')+'</b> for institutional access'];
+}
+function scrLoad(i){
+  var c=COL[i], ln=loadLines(i), n=c.ld||0;
+  return sb()+'<div class="scr-body col" style="padding-bottom:0"><div class="ld" data-hl="ld"><img src="img/icon.jpg" alt=""><h3>Building your block library</h3>'+
+   '<div class="ld-bar"><i style="width:'+Math.round(100*n/ln.length)+'%"></i></div><div class="ld-list">'+ln.map(function(t,k){ return '<div'+(k<n?' class="ok"':'')+'><span class="ck">'+CHK+'</span><span>'+t+'</span></div>'; }).join('')+'</div></div></div>';
+}
+var BM=SV('<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',1.8);
+function bkHTML(k){ var b=BLK[k]; return '<div class="bk"><img src="img/'+b.img+'.jpg" alt=""><span><em>'+b.c+'</em><b>'+b.t+'</b></span>'+BM+'</div>'; }
+function scrBlocks(i){
+  var c=COL[i], s=setOf(i);
+  return sb()+'<div class="ytop"><i class="wm"></i></div><div class="scr-body">'+
+   '<h2 class="po-h" data-hl="blk">Your first blocks for <em>'+shortS(c.spec)+'</em></h2><p class="po-s">Pinned to your home. All 70+ techniques stay one tap away.</p>'+
+   s.b.map(bkHTML).join('')+
+   '<div class="dq"><span><span class="nw">✓ New</span><b>Daily Question</b><small>Set for a '+SHORTP[c.prof]+'. Answer questions every day and keep your streak going.</small></span>'+CHEV+'</div></div>'+
+   '<div class="scr-foot"><button class="y-btn" data-act="blocksnext">Continue</button></div>';
+}
+function plansHTML(i){
+  var c=COL[i], y=c.plan==='y', p=PRICE;
+  return '<div class="plans" data-hl="plans">'+
+   '<button class="plan yr'+(y?' on':' off')+'" data-act="plan" data-p="y"><span class="tg">BEST VALUE - SAVE 46%</span><span class="bd"><span><b>Annual Plan</b><small>→ '+p.ym+' / month</small></span><span class="pp">'+p.y+' / year</span></span></button>'+
+   '<button class="plan mo'+(!y?' on':' off')+'" data-act="plan" data-p="m"><span class="bd"><span><b>Monthly Plan</b><small>→ Flexibility, cancel anytime</small></span><span class="pp">'+p.m+' / mo</span></span></button></div>';
+}
+function bulHTML(keys){ return '<div class="pw-ul" data-hl="bul"><small>Unlock full access:</small>'+keys.map(function(k){ return '<div><i>'+CHK+'</i><span>'+BUL[k]+'</span></div>'; }).join('')+'</div>'; }
+var XSVG=SV('<path d="M18 6 6 18M6 6l12 12"/>',2.4);
+function scrPW(i){
+  var c=COL[i], s=setOf(i), y=c.plan==='y';
+  return '<div class="pws" style="display:flex;flex-direction:column;height:100%">'+sb(1)+'<button class="pw-x" data-act="x" aria-label="Close">'+XSVG+'</button>'+
+   '<div class="scr-body" data-hl="pwtop">'+
+   '<div class="pw-stars">★★★★★</div>'+
+   '<div class="pw-eb">For '+(/^[AEIOU]/.test(SHORTP[c.prof])?'an ':'a ')+SHORTP[c.prof]+'</div><h2 class="pw-h" data-hl="head">'+s.h+'</h2>'+
+   '<div class="pw-chip"><span>Your setup: '+who(i)+(c.inst?' · '+c.inst:'')+'</span></div>'+
+   bulHTML(PH[i].bul)+plansHTML(i)+
+   '<div data-hl="rev"><div class="pw-proof"><i>★★★★★</i><span>4.9 · 1.1K ratings · Trusted by 15,000+ anesthesiologists</span></div>'+
+   '<div class="rev"><p>“NYSORA APP is amazing. My new colleagues will come get my phone to review blocks that they have not done in awhile.”</p><small>denelson2 · App Store</small></div>'+
+   '<button class="inst" data-act="inst-access">Does <b>'+(c.inst||'your institution')+'</b> cover NYSORA? <b>Request institutional access ›</b></button></div>'+
+   '<div class="legal">'+(y?'Annual Plan: 149,99 € per year.':'Monthly Plan: 22,99 € per month.')+' Auto-renewable subscription. Payment will be charged to your Apple ID account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.<div class="ln"><u>Terms of Use</u> | <u>Privacy Policy</u> | <u>Restore Purchases</u></div></div></div>'+
+   '<div class="scr-foot"><button class="y-btn amb" data-act="buy">Subscribe · '+(y?PRICE.y+' / year':PRICE.m+' / month')+'</button><p class="fcap">Auto-renews. Cancel anytime in your Apple Account.</p></div></div>';
+}
+function scrToday(i){
+  var c=COL[i];
+  return '<div class="pws td" style="display:flex;flex-direction:column;height:100%">'+sb(1)+'<button class="pw-x" data-act="tx" aria-label="Close">'+XSVG+'</button>'+
+   '<div class="scr-body"><div class="pw-stars">★★★★★</div><div class="pw-q" data-q>'+QUOTES[c.qi%4]+'</div>'+
+   bulHTML(['std','step','vid','upd'])+plansHTML(i)+
+   '<button class="y-btn amb" data-act="tbuy" style="margin-top:6px">Subscribe</button>'+
+   '<div class="legal">Annual Plan: 149,99 € per year. Auto-renewable subscription. Payment will be charged to your Apple ID account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period.<div class="ln"><u>Terms of Use</u> | <u>Privacy Policy</u> | <u>Restore Purchases</u></div></div>'+
+   '<div class="cap-today">Reached only from Settings → Subscribe Now.<br>Never shown on first launch. Same screen for every profession.</div></div></div>';
+}
+function scrHome(i){
+  var c=COL[i], s=setOf(i);
+  var cats=[['cat-head','11 blocks','Head & Neck'],['cat-upper','18 blocks','Upper Extremity'],['cat-lower','20 blocks','Lower Extremity'],['cat-thorax','22 blocks','Thorax & Abdo Wall']];
+  return sb()+'<div class="ytop"><i class="wm"></i></div><div class="scr-body">'+
+   '<div class="srch">'+SV('<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>')+'Search...</div>'+
+   '<div data-hl="acct"><button class="hcard" data-act="push"><span class="bell">🔔</span><span><b>Turn on your push notification?</b><small>You’re not getting notifications about incoming messages on your device.</small></span>'+CHEV+'</button>'+
+   '<button class="hcard" data-act="apple"><span><b>Save your blocks and streak</b><small>Sign in to keep them on every device.</small></span><span class="ap"> Continue</span></button></div>'+
+   '<div class="cath">Your first blocks · '+shortS(c.spec)+'</div>'+bkHTML(s.b[0])+
+   '<div class="cath">Categories</div><div class="cats">'+cats.map(function(k){ return '<div class="cat"><img src="img/'+k[0]+'.jpg" alt=""><em>'+k[1]+'</em><b>'+k[2]+'</b></div>'; }).join('')+'</div></div>'+
+   '<div class="tabbar"><div class="on">'+SV('<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>')+'Home</div><div>'+BM+'Saved</div><div>'+SV('<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>')+'Search</div><div>'+SV('<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>')+'News</div><div>'+SV('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>')+'Account</div></div>';
+}
+
+/* which screen each phone shows for a step */
+function stepScr(st){ if(st==='arrive') return 'fb'; if(st==='prof') return 'q0'; if(st==='spec') return 'q1'; return st; }
+function phoneHTML(i){
+  var c=COL[i], s=c.scr, inner;
+  if(s==='fb') inner=scrFB(i); else if(s==='disc') inner=scrDisc(i); else if(s==='att') inner=scrAtt(i,0); else if(s==='attsys') inner=scrAtt(i,1);
+  else if(/^q\d$/.test(s)) inner=scrQ(i,+s[1]); else if(s==='load') inner=scrLoad(i); else if(s==='blocks') inner=scrBlocks(i);
+  else if(s==='today') inner=scrToday(i); else if(s==='home') inner=scrHome(i); else inner=scrPW(i);
+  return '<div class="phone'+(G.theme==='dark'?' dk':'')+'"><section class="scr" data-s="'+s+'">'+inner+'<div class="toast"></div></section></div>';
+}
+function drawCol(i,keep){
+  var box=$('#trio .tcol[data-i="'+i+'"] .pbox'); if(!box) return;
+  var ph=box.querySelector('.phone'), b=box.querySelector('.scr-body'), y=b?b.scrollTop:0;
+  var tmp=document.createElement('div'); tmp.innerHTML=phoneHTML(i);
+  if(ph) box.replaceChild(tmp.firstChild,ph); else box.insertBefore(tmp.firstChild,box.firstChild);
+  if(keep){ var nb=box.querySelector('.scr-body'); if(nb) nb.scrollTop=y; }
+  var c=COL[i];
+  if(c.scr==='load') runLoad(i);
+  clearInterval(c.qt); if(c.scr==='today') c.qt=setInterval(function(){ var q=$('[data-q]',box); if(!q) return clearInterval(c.qt); q.style.opacity=0; setTimeout(function(){ c.qi++; q.textContent=QUOTES[c.qi%4]; q.style.opacity=1; },300); },2600);
+}
+function go(i,s){ var c=COL[i]; clearTimeout(c.lt); c.scr=s; if(s==='load') c.ld=0; drawCol(i); }
+function runLoad(i){
+  var c=COL[i], n=loadLines(i).length, k=walk.on?0.5:1;
+  clearTimeout(c.lt);
+  c.lt=setTimeout(function step(){
+    if(c.scr!=='load') return;
+    if(c.ld<n){ c.ld++; var box=$('#trio .tcol[data-i="'+i+'"]'); $$('.ld-list div',box).forEach(function(d,j){ d.classList.toggle('ok',j<c.ld); }); var bar=$('.ld-bar i',box); if(bar) bar.style.width=Math.round(100*c.ld/n)+'%'; c.lt=setTimeout(step,620*k); }
+    else { c.lt=setTimeout(function(){ if(c.scr==='load') go(i,'blocks'); },500*k); }
+  },420*k);
+}
+function pillText(i){ return PH[i].pill; }
+function renderTrio(){
+  $('#trio').innerHTML=PH.map(function(p,i){
+    return '<div class="tcol" data-i="'+i+'" style="--ring:'+p.ring+'"><div class="apill"><span class="mt">'+p.mt+'</span><span class="tx">'+pillText(i)+'</span></div><div class="pbox"><i class="finger"></i></div><div class="tlab"><b>'+p.lab[0]+'</b><span>'+p.lab[1]+'</span></div></div>';
+  }).join('');
+  PH.forEach(function(p,i){ drawCol(i); });
+}
+function paintSteps(){ $$('#steps button').forEach(function(b){ b.classList.toggle('on',b.dataset.st===G.step); }); $('#stcap').innerHTML=TCAP[G.step]||''; $$('#trio .tcol').forEach(function(t){ t.classList.toggle('ring',G.step!=='today'); }); }
+function setStep(st){ G.step=st; PH.forEach(function(p,i){ initCol(i); COL[i].scr=stepScr(st); }); paintSteps(); PH.forEach(function(p,i){ clearTimeout(COL[i].lt); drawCol(i); }); }
+function toast(i,m){ var e=$('#trio .tcol[data-i="'+i+'"] .toast'); if(!e) return; e.textContent=m; e.classList.add('show'); clearTimeout(e._t); e._t=setTimeout(function(){ e.classList.remove('show'); },1900); }
+
+/* taps inside a phone change only that phone */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-act]'); if(!t) return; var col=t.closest('.tcol'); if(!col) return;
+  var i=+col.dataset.i, c=COL[i], a=t.dataset.act;
+  if(a==='install') go(i,'disc');
+  else if(a==='agree') go(i,'att');
+  else if(a==='attnext') go(i,'attsys');
+  else if(a==='attok'||a==='attno') go(i,'q0');
+  else if(a==='pick'){ c[t.dataset.k]=t.dataset.v; $$('.qrow',col).forEach(function(r){ r.classList.toggle('on',r===t); }); }
+  else if(a==='qnext'){ var n=+c.scr[1]; if(n<QS.length-1) go(i,'q'+(n+1)); else go(i,'load'); }
+  else if(a==='qback'){ go(i,'q'+(+c.scr[1]-1)); }
+  else if(a==='blocksnext') go(i,'pw');
+  else if(a==='plan'){ c.plan=t.dataset.p; drawCol(i,true); }
+  else if(a==='inst-access') toast(i,'Your institutional access form opens here');
+  else if(a==='buy'||a==='tbuy') toast(i,'Apple’s purchase sheet opens here');
+  else if(a==='x'){ go(i,'home'); toast(i,'Closed straight into the app. No second paywall.'); }
+  else if(a==='tx') toast(i,'Today the X goes back to Settings');
+  else if(a==='push') toast(i,'The iOS push prompt, now after the paywall');
+  else if(a==='apple') toast(i,'Continue with Apple or Google opens here');
+});
+document.addEventListener('input',function(e){ var t=e.target; if(t.dataset&&t.dataset.act==='inst'){ var col=t.closest('.tcol'); if(col) COL[+col.dataset.i].inst=t.value.trim(); } });
+
+function fit(){ var w=document.documentElement.clientWidth||innerWidth; if(w<300) w=Math.max(w,(screen&&screen.width)||390,320); var sc=w>=1240?0.8:w>=900?(w-160)/(3*390):(w-48)/390; sc=Math.min(0.8,Math.max(0.42,sc)); $('#trio').style.setProperty('--sc',sc.toFixed(3)); }
+
+/* ---- idea cards and list ---- */
+function ideaRow(d){ return '<div class="row"><span class="out">'+d.o+' <small>'+d.u+'</small></span><span class="see">See it on the phones →</span></div>'; }
+$('#ideas').innerHTML=IDEAS.map(function(d,i){ return '<div class="idea" data-idea="'+i+'"><div class="n">Idea '+(i+1)+' of 5</div><h3>'+d.t+'</h3><p>'+d.p+'</p>'+ideaRow(d)+'<div class="kept">'+d.kept+'</div></div>'; }).join('');
+$('#list').innerHTML=IDEAS.map(function(d,i){ return '<div class="it" data-idea="'+i+'"><div class="em">0'+(i+1)+'</div><div><h3>'+d.t+'</h3><p>'+d.p+'</p>'+ideaRow(d)+'</div></div>'; }).join('');
+function showIdea(n){
+  var d=IDEAS[n]; stopWalk(); showView('pw'); setStep(d.st);
+  setTimeout(function(){
+    $('#trio').scrollIntoView({behavior:'smooth',block:'start'});
+    $$('#trio [data-hl="'+d.hl+'"]').forEach(function(el){
+      var b=el.closest('.scr-body'); if(b&&b!==el) b.scrollTop=Math.max(0,el.offsetTop-120);
+      el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse');
+    });
+  },80);
+}
+document.addEventListener('click',function(e){ var c=e.target.closest('[data-idea]'); if(c) showIdea(+c.dataset.idea); });
+document.addEventListener('click',function(e){ var b=e.target.closest('[data-adgo]'); if(!b) return; var k=+b.dataset.adgo; stopWalk(); showView('pw'); setStep('arrive');
+  setTimeout(function(){ var col=$('#trio .tcol[data-i="'+k+'"]'); col.scrollIntoView({behavior:'smooth',block:'center',inline:'center'}); var ph=col.querySelector('.phone'); ph.classList.remove('pulse'); void ph.offsetWidth; ph.classList.add('pulse'); },80); });
+
+/* ---- views ---- */
+function showView(v){ $$('.view').forEach(function(x){ x.classList.remove('on'); }); $('#view-'+v).classList.add('on'); $$('.tabs button').forEach(function(b){ b.classList.toggle('on',b.dataset.v===v); });
+  if(v!=='pw') stopWalk();
+  var q=new URLSearchParams(location.search); q.delete('open'); if(v==='pw') q.set('view','proto'); else q.delete('view'); history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:'')); scrollTo(0,0); fit(); }
+$$('.tabs button').forEach(function(b){ b.addEventListener('click',function(){ showView(b.dataset.v); }); });
+$$('[data-open]').forEach(function(b){ b.addEventListener('click',function(){ showView(b.dataset.open); }); });
+$$('#steps button').forEach(function(b){ b.addEventListener('click',function(){ stopWalk(); setStep(b.dataset.st); }); });
+$$('#theme button').forEach(function(b){ b.addEventListener('click',function(){ G.theme=b.dataset.th; $$('#theme button').forEach(function(x){ x.classList.toggle('on',x===b); }); $$('#trio .phone').forEach(function(p){ p.classList.toggle('dk',G.theme==='dark'); }); }); });
+
+/* ---- the 30-second walkthrough: drives the real phones ---- */
+var walk={on:false,tok:0};
+function wait(ms,tk){ return new Promise(function(res,rej){ setTimeout(function(){ tk===walk.tok?res():rej('stop'); },ms); }); }
+function cap(t,p){ $('#dtx').textContent=t; $('#dpr').style.width=p+'%'; }
+async function tap(i,sel,tk){
+  var col=$('#trio .tcol[data-i="'+i+'"]'), box=$('.pbox',col), el=$(sel,box), f=$('.finger',box); if(!el) return;
+  var b=box.getBoundingClientRect(), r=el.getBoundingClientRect();
+  f.classList.add('on'); f.style.left=(r.left-b.left+r.width/2)+'px'; f.style.top=(r.top-b.top+r.height/2)+'px';
+  await wait(380,tk); f.classList.add('press'); await wait(120,tk); f.classList.remove('press'); el.click(); await wait(160,tk);
+}
+function all(s){ PH.forEach(function(p,i){ if(i!==1) go(i,s); }); }
+async function scrollTo2(i,sel,tk){ var box=$('#trio .tcol[data-i="'+i+'"] .pbox'), b=$('.scr-body',box), el=$(sel,box); if(!b||!el) return; var to=Math.max(0,el.offsetTop-90), fr=b.scrollTop, t0=performance.now(); while(true){ var k=Math.min(1,(performance.now()-t0)/600); b.scrollTop=fr+(to-fr)*(1-Math.pow(1-k,3)); if(k>=1) break; await wait(16,tk); } }
+async function startWalk(){
+  stopWalk(); var tk=++walk.tok; walk.on=true; showView('pw'); $('#dcap').classList.add('on'); $('#wt').classList.add('on'); $('#wt').textContent='■ Stop walkthrough';
+  var t0=performance.now();
+  try{
+    setStep('arrive'); $('#trio').scrollIntoView({behavior:'smooth',block:'center'});
+    cap('Three installs, one from each of your Meta ads.',5); await wait(1500,tk);
+    await tap(1,'[data-act=install]',tk); all('disc');
+    cap('Your disclaimer stays first.',12); await wait(700,tk);
+    await tap(1,'[data-act=agree]',tk); all('att');
+    cap('Tracking stays early, on its own screen. Push and sign-in wait.',22); await wait(800,tk);
+    await tap(1,'[data-act=attnext]',tk); all('attsys'); await wait(400,tk);
+    await tap(1,'[data-act=attok]',tk); all('q0');
+    cap('Your Profession list, untouched.',32); await wait(500,tk);
+    await tap(1,'[data-act=qnext]',tk); all('q1');
+    cap('Specialty: this answer drives everything after it.',40); await wait(500,tk);
+    await tap(1,'[data-act=qnext]',tk); all('q2'); await wait(250,tk);
+    await tap(1,'[data-act=qnext]',tk); all('q3');
+    cap('Age group and Institution, as today.',48); await wait(400,tk);
+    await tap(1,'[data-act=qnext]',tk); all('load');
+    cap('The loader reads every answer back.',56); await wait(2600,tk);
+    PH.forEach(function(p,i){ if(COL[i].scr!=='blocks') go(i,'blocks'); });
+    cap('Their first blocks, picked by specialty.',66); await wait(1500,tk);
+    await tap(1,'[data-act=blocksnext]',tk); all('pw');
+    cap('The paywall names their specialty, in your blue and gold.',76); await wait(1900,tk);
+    await Promise.all(PH.map(function(p,i){ return scrollTo2(i,'[data-hl=plans]',tk); }));
+    cap('Annual pre-selected, your 4.9 and a named review by the plans.',86); await wait(500,tk);
+    await tap(1,'[data-p=m]',tk); await wait(400,tk); await tap(1,'[data-p=y]',tk); await wait(900,tk);
+    cap('The X goes straight into the app. No second paywall.',95); await tap(1,'[data-act=x]',tk); PH.forEach(function(p,i){ if(i!==1) go(i,'home'); }); await wait(1800,tk);
+    cap('That’s the flow. Tap any phone to try it yourself.',100); console.log('walkthrough ms',Math.round(performance.now()-t0));
+    await wait(1400,tk); stopWalk(); setStep('pw');
+  }catch(e){}
+}
+function stopWalk(){ if(!walk.on) return; walk.on=false; walk.tok++; $('#dcap').classList.remove('on'); $('#wt').classList.remove('on'); $('#wt').textContent='▶ 30-second walkthrough'; $$('.finger').forEach(function(f){ f.classList.remove('on'); }); }
+$$('[data-walk]').forEach(function(b){ b.addEventListener('click',function(){ if(walk.on&&b.id==='wt'){ stopWalk(); return; } startWalk(); }); });
+document.addEventListener('pointerdown',function(e){ if(!walk.on||!e.isTrusted) return; if(e.target.closest('#wt')) return; if(e.target.closest('#trio,#steps,#theme,.tabs,.nav')) stopWalk(); },true);
+
+PH.forEach(function(p,i){ COL[i].scr=stepScr(G.step); });
+renderTrio(); fit(); paintSteps(); addEventListener('resize',fit); addEventListener('load',fit); addEventListener('pageshow',fit); if(window.ResizeObserver) new ResizeObserver(fit).observe(document.documentElement);
+(function(){ var q=new URLSearchParams(location.search); if(q.get('view')==='proto'||q.get('open')==='proto') showView('pw'); if(q.get('step')) setStep(q.get('step')); })();
+</script>
+<script>
+/* GitHub Pages lets browsers keep this page for 10 minutes; if a newer build is live, reload onto it */
+var BUILD='y1';
+fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(function(r){ return r.text(); }).then(function(h){
+  var m=h.match(/var BUILD='([^']+)'/); if(m && m[1]!==BUILD){ var q=new URLSearchParams(location.search); q.set('v',m[1]); location.replace(location.pathname+'?'+q.toString()); }
+}).catch(function(){});
+</script>
+</body>
+</html>
